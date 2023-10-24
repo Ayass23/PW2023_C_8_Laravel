@@ -22,10 +22,10 @@
                         <a class="nav-link text-white active" href="{{ url('homepage') }}">Event</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Make Event</a>
+                        <a class="nav-link text-white" href="{{ url('login') }}">Make Event</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Profile</a>
+                        <a class="nav-link text-white" href="{{ url('profile') }}">Profile</a>
                     </li>
                 </ul>
                 <div>

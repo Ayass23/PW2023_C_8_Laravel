@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <title>Home Page Tiket</title>
-   
+   <link rel="stylesheet" href="apps.css">
     <!-- Fonts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -25,7 +25,7 @@
                         <a class="nav-link text-white active" href="{{ url('homepage') }}">Event</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('admindashboard') }}">Make Event</a>
+                        <a class="nav-link text-white" href="{{ url('login') }}">Make Event</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ url('profile') }}">Profile</a>
@@ -69,7 +69,7 @@
           </form>
       </div>
 
-      <div class="container p-2 mt-3 d-flex flex-wrap justify-content-evenly ">
+      <div class="container p-2 mt-3 d-flex flex-wrap justify-content-evenly mb-5">
         @forelse ($tickets as $item)
         <div class="card p-2 mt-4 shadow-lg border-success"  style="width: 19rem">
             <img class="rounded" src="{{asset('images/1.png')}}" alt="">
@@ -102,6 +102,62 @@
         @endforelse  
     </div>
       
+    <footer class="bg-success text-white text-center text-lg-start">
+        <div class="container p-4">
+          <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+              <h5 class="text-uppercase">About GeTix</h5>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
+                molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
+                voluptatem veniam, est atque cumque eum delectus sint!
+              </p>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase">Social Media</h5>
+      
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#!" class="text-white">Instagram</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Whatsapp</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Twitter</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Facebook</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase mb-0">Our Partner</h5>
+      
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#!" class="text-white">Atma Jaya Univesity</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Univerity of Ciputra</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Net Media</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Mie Gacoan</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2021 Copyright:
+          <a class="text-white" href="#">GeTix</a>
+        </div>
+      </footer>
 
     <script src= "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity= "sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
