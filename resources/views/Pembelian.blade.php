@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-3 "> 
                     <li class="nav-item">
-                        <a class="nav-link text-white active" href="#">Event</a>
+                        <a class="nav-link text-white active" href="{{ url('homepage2') }}">Event</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Make Event</a>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4"> <!-- Right card size -->
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="container text-center" style="border-bottom: 1px solid rgb(151, 151, 151)">
@@ -67,10 +67,11 @@
                             <img style="width: 36px" src="{{ asset('images/location_1.png') }}" alt="">
                             <p class="card-text mx-2 text-success">Online Platform</p>
                         </div>
+                        
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 mt-4"> <!-- Larger left card -->
+            <div class="col-md-8 mt-4">
                 <div class="card">
                     <div class="card-body">
                         <button class="btn btn-outline-success btn-pill" id="description-button">Deskripsi</button>
@@ -90,31 +91,33 @@
                                 </div>
                             </div>
                             <div id="ticket" style="display: none">
+                                @forelse ($ticket as $item)
+                                    @if ($item['jumlah'] == 0)
                                 <div class="card mt-3 shadow-lg">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between ">
                                             <div  class="d-flex align-items-center">
-                                                <h3 class="card-title text-success mb-0">Phase 1: Reguler A</h3>
+                                                <h3 class="card-title text-success mb-0">{{ $item['nama'] }}</h3>
                                             </div>                                            
-                                            <button type="button" class="btn btn-outline-danger" disabled> Sold out</button>
+                                            <button type="button" class="btn btn-outline-danger" disabled>Sold out</button>
                                         </div>
                                         <hr class="mb-1">
                                         <p class="card-text mb-0 text-secondary">Harga :</p>
-                                        <h3 class="text-success"><strong>Rp. 50.000</strong></h3>
+                                        <h3 class="text-success"><strong>{{ $item['harga'] }}</strong></h3>
                                     </div>
                                 </div>
-                                
-                                <div class="card mt-3 shadow-lg">
+                                @else
+                                 <div class="card mt-3 shadow-lg">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between ">
-                                            <h3 class="card-title text-success mb-0">Phase 1: Reguler A</h3>
+                                            <h3 class="card-title text-success mb-0">{{ $item['nama'] }}</h3>
                                             <button type="button" class="btn btn-outline-success" disabled><strong>On Sale</strong></button>
                                         </div>
                                         <hr class="mb-1">
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <p class="card-text mb-0 text-secondary">Harga :</p>
-                                                <h3 class="text-success"><strong>Rp. 50.000</strong></h3>
+                                                <h3 class="text-success"><strong>{{ $item['harga'] }}</strong></h3>
                                             </div>
                                             <div class="d-flex align-items-center">
                                                 <button class="btn btn-success" id="pilihButton">Pilih</button>
@@ -135,12 +138,14 @@
                                                         <button class="btn btn-success" id="beliButton" onclick="window.location='{{ url('pembayaran') }}'">Beli</button>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>    
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
+                                @endif    
+                                @empty
+                                @endforelse
+
                             </div>
                         </div>
                 </div>
@@ -149,6 +154,7 @@
             
         </div>
     </div>
+    
     
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

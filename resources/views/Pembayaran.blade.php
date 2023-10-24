@@ -19,13 +19,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-3 "> 
                     <li class="nav-item">
-                        <a class="nav-link text-white active" href="#">Event</a>
+                        <a class="nav-link text-white active" href="{{ url('homepage') }}">Event</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Make Event</a>
+                        <a class="nav-link text-white" href="{{ url('admindashboard') }}">Make Event</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('beforelogin') }}">Profile</a>
+                        <a class="nav-link text-white" href="{{ url('profile') }}">Profile</a>
                     </li>
                 </ul>
                 <div>
@@ -47,10 +47,10 @@
                         </div>
                         <hr class="m-0">
                         <div class="container p-3">
-                            <form>
+                            <form onsubmit="return validateForm()">
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Nama Pemesan</label>
-                                    <input type="email" class="form-control mt-2 " id="exampleFormControlInput1" placeholder="Masukan Nama Lengkap">
+                                    <input type="username" class="form-control mt-2 " id="exampleFormControlInput1" placeholder="Masukan Nama Lengkap" required>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-2">
@@ -66,18 +66,19 @@
                                     <div class="col-md-10">
                                         <div class="form-group mt-4">
                                             <label for="nomorIdentitas"></label>
-                                            <input type="text" class="form-control mt-2" id="nomorIdentitas" placeholder="Masukan Nomor Identitas">
+                                            <input type="text" class="form-control mt-2" id="nomorIdentitas" placeholder="Masukan Nomor Identitas" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group mt-4">
                                     <label for="exampleFormControlInput1">Email</label>
-                                    <input type="email" class="form-control mt-2" id="exampleFormControlInput1" placeholder="name@gmail.com">
+                                    <input type="email" class="form-control mt-2" id="exampleFormControlInput1" placeholder="name@gmail.com" required>
                                 </div>
                                 <div class="form-group mt-4 mb-3">
                                     <label for="exampleFormControlInput1">No. Whatsapp</label>
-                                    <input type="email" class="form-control mt-2" id="exampleFormControlInput1" placeholder="081xxxxxxxx">
+                                    <input type="text" class="form-control mt-2" id="exampleFormControlInput1" placeholder="081xxxxxxxx"required >
                                 </div>
+                                <button class="btn btn-success mt-2" style="width:100%;">Bayar</button>
                             </form>
                         </div>
                     </div>
@@ -125,8 +126,6 @@
                                 <p class="text-dark"><strong>Rp. 60.000</strong></p>
                             </div>
                         </div>
-                        <button class="btn btn-success mt-2
-                        " style="width:100%;">Bayar</button>
                     </div>
                 </div>
             </div>
@@ -138,8 +137,8 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script>
-    
-</script>
+        
+    </script>
 </body>
 
 </html>
