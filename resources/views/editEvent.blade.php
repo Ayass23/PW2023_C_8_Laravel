@@ -95,40 +95,48 @@
         }
     </style>
 
-    <header class="p-3 text-bg-success">
-        <div class="d-flex flex-wrap align-items-center justify-content-between">
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li class="nav-item col-lg-auto">
-                    <img src="{{ asset('images/logoGetix.png') }}" alt="Logo" style="height: 40px;"> 
-                </li>
-                
-            </ul>
+<header class="p-3 text-bg-success">
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li class="nav-item col-lg-auto">
+                <img src="{{ asset('images/logoGetix.png') }}" alt="Logo" style="height: 40px;"> 
+            </li>
+            
+        </ul>
 
-            <ul class="navbar-nav ml-auto d-flex flex-row">
-                <li class="nav-item">
-                    <a href="{{ url('homepage') }}" class="nav-link active">Logout</a>
-                </li>
-            </ul>
+        <ul class="navbar-nav ml-auto d-flex flex-row">
+            <li class="nav-item">
+                <li><a class="dropdown-item" href="{{ url('homepage') }}">Logout</a></li>
+            </li>
+        </ul>
 
-        </div>
-    </header>
+    </div>
+</header>
 
-    <section>
+<section>
     <nav>
-            <ul>
-                <li class="nav-item">
-                    <a href="{{ url('admindashboard') }}" class="nav-link ">Dashboard</a>
+        <ul>
+        <ul>
+            <li class="nav-item">
+                <a href="{{ url('admindashboard') }}" class="nav-link ">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url('event') }}" class="nav-link " aria-current="page">Event</a>
+            </li>
+            <li class="nav-item">
+                    <a href="{{ url('addMerchandise') }}" class="nav-link active" aria-current="page">Add Merchandise</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url('event') }}" class="nav-link ">Event</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('reportpelanggan') }}" class="nav-link ">Report User</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('reportevent') }}" class="nav-link active" aria-current="page">Report Event</a>
-                </li>
-            </ul>
+            <li class="nav-item">
+                <a href="{{ url('reportpelanggan') }}" class="nav-link ">Report User</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url('reportevent') }}" class="nav-link">Report Event</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url('reportmerchandise') }}" class="nav-link">Report Merchandise</a>
+            </li>
+        </ul>
+        </ul>
     </nav>
     
         <form onsubmit="return validateForm()">

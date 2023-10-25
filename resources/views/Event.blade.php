@@ -116,18 +116,26 @@
 <section>
     <nav>
         <ul>
+        <ul>
             <li class="nav-item">
-                <a href="{{ url('admindashboard') }}" class="nav-link">Dashboard</a>
+                <a href="{{ url('admindashboard') }}" class="nav-link ">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('event') }}" class="nav-link active" aria-current="page">Event</a>
+                <a href="{{ url('event') }}" class="nav-link " aria-current="page">Event</a>
             </li>
+            <li class="nav-item">
+                    <a href="{{ url('addMerchandise') }}" class="nav-link active" aria-current="page">Add Merchandise</a>
+                </li>
             <li class="nav-item">
                 <a href="{{ url('reportpelanggan') }}" class="nav-link ">Report User</a>
             </li>
             <li class="nav-item">
                 <a href="{{ url('reportevent') }}" class="nav-link">Report Event</a>
             </li>
+            <li class="nav-item">
+                <a href="{{ url('reportmerchandise') }}" class="nav-link">Report Merchandise</a>
+            </li>
+        </ul>
         </ul>
     </nav>
 
