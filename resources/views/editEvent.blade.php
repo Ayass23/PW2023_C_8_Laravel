@@ -4,7 +4,7 @@
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Event</title>
+    <title>Report Event - Edit Event</title>
    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -65,7 +65,7 @@
             padding: 20px;
             width: 80%;
             background-color: #f1f1f1;
-            height: 300px; /* only for demonstration, should be removed */
+            height: 400px; /* only for demonstration, should be removed */
         }
         @media (max-width: 600px) {
             nav, article {
@@ -95,46 +95,46 @@
         }
     </style>
 
-<header class="p-3 text-bg-success">
-    <div class="d-flex flex-wrap align-items-center justify-content-between">
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li class="nav-item col-lg-auto">
-                <img src="{{ asset('images/logoGetix.png') }}" alt="Logo" style="height: 40px;"> 
-            </li>
-            
-        </ul>
+    <header class="p-3 text-bg-success">
+        <div class="d-flex flex-wrap align-items-center justify-content-between">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li class="nav-item col-lg-auto">
+                    <img src="{{ asset('images/logoGetix.png') }}" alt="Logo" style="height: 40px;"> 
+                </li>
+                
+            </ul>
 
-        <ul class="navbar-nav ml-auto d-flex flex-row">
-            <li class="nav-item">
-                <li><a class="dropdown-item" href="{{ url('homepage') }}">Logout</a></li>
-            </li>
-        </ul>
+            <ul class="navbar-nav ml-auto d-flex flex-row">
+                <li class="nav-item">
+                    <a href="{{ url('homepage') }}" class="nav-link active">Logout</a>
+                </li>
+            </ul>
 
-    </div>
-</header>
+        </div>
+    </header>
 
-<section>
+    <section>
     <nav>
-        <ul>
-            <li class="nav-item">
-                <a href="{{ url('admindashboard') }}" class="nav-link">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url('event') }}" class="nav-link active" aria-current="page">Event</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url('reportpelanggan') }}" class="nav-link ">Report User</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url('reportevent') }}" class="nav-link">Report Event</a>
-            </li>
-        </ul>
+            <ul>
+                <li class="nav-item">
+                    <a href="{{ url('admindashboard') }}" class="nav-link ">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('event') }}" class="nav-link ">Event</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('reportpelanggan') }}" class="nav-link ">Report User</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('reportevent') }}" class="nav-link active" aria-current="page">Report Event</a>
+                </li>
+            </ul>
     </nav>
-
+    
         <form onsubmit="return validateForm()">
             <div class="container">
                 <div class="event-box">
-                    <h2 style="font-weight: bold; text-align: center;">Event Registration</h2>
+                    <h2 style="font-weight: bold; text-align: center;">Edit Event</h2>
                     <hr style="border: solid">
                         <div class="input">
                             <label for="formNama" class="form-label">Penyelenggara</label>
@@ -186,6 +186,7 @@
                             </div>
                         </div>
                     </hr>
+
                     <script>
                         function inputForm() {
                         const penyelenggara = document.getElementById("penyelenggara").value;
@@ -195,45 +196,32 @@
                         const waktu = document.getElementById("waktu").value;
                         const poster = document.getElementById("posterFile").value;
                         
-                        if (penyelenggara.trim() === "") {
-                            alert("Penyelenggara Tidak boleh Kosong!");
-                            return false;
-                        }else if (namaTiket.trim() === "") {
+                        if (namaTiket.trim() === "") {
                             alert("Nama Tiket Tidak Boleh Kosong!");
-                            return false;
-                        }else if (hargaTiket.trim() == "") {
-                            alert("Harga Tiket Tidak Boleh Kosong");
-                            return false;
-                        }else if (tanggal.trim() == "") {
-                            alert("Pilih Tanggal Event Anda!");
-                            return false;
-                        }else if (waktu.trim() == "") {
-                            alert("Waktu Event Tidak Boleh Kosong!");
-                            return false;
-                        }else if (poster.trim() == "") {
-                            alert("Silahkan Input Poster Event Anda!");
                             return false;
                         }else{
                             return true;
                         }
                                         
                         };
-
                         function showAlert() {
                             if (inputForm()) {
                                 const konfirmasi = confirm("Apakah Data Anda Sudah Benar?");
                                 if (konfirmasi) { 
                                     alert("Data Berhasil Disimpan!");
+                                    
                                 } else {
                                     alert("Data Gagal Disimpan!");    
-                                }
-                            } 
+                                }  
+                            }
+                           
                         }       
                     </script>
-
+                
                     <div style="margin-left: 450px; margin-top: 30px;">
                         <input type="reset" style="border: 1px solid red; color: red;" id="reset" name="reset">
-                        <input type="button" onclick="showAlert()" value="Submit" style="border: 1px solid green; color: white; background-color: green;" type="submit" />
+                        <td><a href="{{ url('reportevent') }}" class="btn btn-outline-success" style="border: 1px solid green; color: white; background-color: green;" onclick="return confirm('Are you finished to update?')">Submit</a></td>
+                        <!-- <input type="button" onclick="showAlert()" value="Submit" style="border: 1px solid green; color: white; background-color: green;" type="submit" /> -->
                     </div>    
                 </div>
             </div>

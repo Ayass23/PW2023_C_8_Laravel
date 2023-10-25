@@ -64,12 +64,12 @@
       <div class="container p-2 mt-4 d-flex justify-content-between">
         <h1 class="text-success">BEST FOR YOU</h1>
         <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2 border-success"  type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
           </form>
       </div>
 
-      <div class="container p-2 mt-3 d-flex flex-wrap justify-content-evenly mb-5">
+      <div class="container p-2 mt-3 d-flex flex-wrap justify-content-evenly mb-5" style="width: 80%;">
         @forelse ($tickets as $item)
         <div class="card p-2 mt-4 shadow-lg border-success"  style="width: 19rem">
             <img class="rounded" src="{{asset('images/1.png')}}" alt="">

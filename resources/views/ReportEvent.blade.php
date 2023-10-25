@@ -4,7 +4,7 @@
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Dashboard</title>
+    <title>Report Event</title>
    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -44,15 +44,9 @@
         nav {
             float: left;
             width: 20%;
-            height: flex;
+            height: 9999px;
             background: #ccc;
             padding: 20px;
-        }
-
-        .main-content {
-            display: flex;
-            align-items: stretch;
-            height: 100vh; 
         }
 
         nav ul {
@@ -85,17 +79,31 @@
             height: 100px; 
         }
 
-        .gambarTransaksi {
-            width: 300px;
-            height: 250px;
+        .gambarEvent {
+            width: 180px;
+            height: 150px;
         }
 
-        /* .event-box {
+        .event-box {
             margin-top: 20px;
             background-color: #fff;
             padding: 20px;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-        } */
+        }
+
+        .search-container {
+            float: right;
+            margin-top: 20px; /* Adjust the margin as needed */
+        }
+
+        .search-container .form-control-sm {
+            width: 50px; /* Adjust the width of the input as needed */
+            margin-right: 5px; /* Add some spacing between the input and button */
+        }
+
+        .search-container .btn-sm {
+            padding: 20px; /* Adjust the button padding as needed */
+        }
     </style>
 
 <header class="p-3 text-bg-success">
@@ -120,102 +128,58 @@
     <nav>
         <ul>
             <li class="nav-item">
-                <a href="{{ url('admindashboard') }}" class="nav-link active">Dashboard</a>
+                <a href="{{ url('admindashboard') }}" class="nav-link">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('event') }}" class="nav-link " aria-current="page">Event</a>
+                <a href="{{ url('event') }}" class="nav-link" aria-current="page">Event</a>
             </li>
             <li class="nav-item">
                 <a href="{{ url('reportpelanggan') }}" class="nav-link ">Report User</a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('reportevent') }}" class="nav-link">Report Event</a>
+                <a href="{{ url('reportevent') }}" class="nav-link active">Report Event</a>
             </li>
         </ul>
     </nav>
         
         <div class="container">
-                <div class="row align-items-center justify-content-around mt-3 ">
-                    <!-- Colom 1 -->
-                    <h1>Dashboard</h1>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="card p-0 mx-3">
-                            <div class="card">
-                                <div class="d-flex justify-content-left" style="margin-left: 10px">
-                                    <div class="text-start mt-3">
-                                        <p class="m-0">Total Event</p>
-                                        <h4>100</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Colom 2 -->
-                    <div class="col-md-3 col-sm-6">
-                        <div class="card p-0 mx-3">
-                            <div class="card">
-                                <div class="d-flex justify-content-left" style="margin-left: 10px">
-                                    <div class="text-start mt-3">
-                                        <p class="m-0">Total Tiket Terjual</p>
-                                        <h4>60</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <!-- Colom 3 -->
-                    <div class="col-md-3 col-sm-6">
-                        <div class="card p-0 mx-3">
-                            <div class="card">
-                                <div class="d-flex justify-content-left" style="margin-left: 10px">
-                                    <div class="text-start mt-3">
-                                        <p class="m-0">Total Penjualan</p>
-                                        <h4>Rp 10.000.000</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h1 style="padding: 20 px;">Event</h1>
-
+            <h1>Report Event</h1>
+                <div class="form-group d-flex align-items-center justify-content-end">
+                    <input type="search" class="form-control"style="width:25%;" placeholder="Search..." aria-label="Search">
+                    <button type="search" class="btn btn-primary btn-sm">Search</button>
+                </div>
+                <h1 style="padding: 20 px;">Event</h1>
                 <div class=" p-3">
                 <table class="table">
                     <thead class="thead-light">
-                        <tr>
+                        <tr class="">
                             <th>No</th>
-                            <th>Gambar</th>
-                            <th>Nama Event</th>
-                            <th>Tanggal</th>
-                            <th>Lokasi</th>
-                            <th>Harga</th>
-                            <th>Total Penjualan</th>
-                            <th>Banyak Jenis Tiket</th>
-                            <th>Keterangan</th>
-                        </tr>
+                                <th>Gambar</th>
+                                <th>Penyelenggara</th>
+                                <th>Nama Tiket</th>
+                                <th>Harga Tiket</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                                <th class="text-center">Control</th>
+                            </tr>
                     </thead>
                     <tbody>
-                        @forelse ($transaksi as $item)
+                    @forelse ($reportEvent as $item)
                             <tr>
                                 <td>{{ $item['no'] }} </td>
-                                <td><img class="gambarTransaksi" src="{{ $item['gambar']
+                                <td><img class="gambarEvent" src="{{ $item['gambar']
                                 }}" alt=""></td>
+                                <td>{{ $item['penyelenggara']}}</td>
                                 <td>{{ $item['nama'] }}</td>
-                                <td>{{ $item['date']}}</td>
-                                <td>{{ $item['lokasi'] }}</td>
                                 <td>{{ $item['harga'] }}</td>
-                                <td>{{ $item['total'] }}</td>
-                                <td>{{ $item['jenis'] }}</td>
+                                <td>{{ $item['tanggal'] }}</td>
+                                <td>{{ $item['waktu'] }} </td>
                                 <td>
-                                    <p class="ms-1"> 
-                                    @if ($item['ket'] === 'Available')
-                                        <span class="badge bg-success">Available</span>
-                                    @else
-                                        <span class="badge bg-secondary">Unavailable</span>
-                                    @endif
-                                    </p>
-                                <td>
-                                
+                                    <div class="d-flex">
+                                        <a href="{{ url('editEvent') }}" class="btn btn-outline-warning" onclick="return confirm('Are you sure you want to update?')">Update</a>
+                                        <button type="button" class="btn btn-danger mx-2" onclick="return confirm('Are you sure you want to delete user?')">Delete</button>
+                                    </div>
+                                </td>
                             </tr>
                             @empty
                             <div class="alert alert-danger">
@@ -226,9 +190,6 @@
                     </table>
                     
                 </div>
-                </div>
-
-                
         </div>
     </section>
 

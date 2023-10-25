@@ -4,7 +4,7 @@
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Dashboard</title>
+    <title>Report User</title>
    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -91,83 +91,90 @@
         }
 
         .search-container {
-    float: right;
-    margin-top: 20px; /* Adjust the margin as needed */
-}
+            float: right;
+            margin-top: 20px; /* Adjust the margin as needed */
+        }
 
-.search-container .form-control-sm {
-    width: 200px; /* Adjust the width of the input as needed */
-    margin-right: 5px; /* Add some spacing between the input and button */
-}
+        .search-container .form-control-sm {
+            width: 50px; /* Adjust the width of the input as needed */
+            margin-right: 5px; /* Add some spacing between the input and button */
+        }
 
-.search-container .btn-sm {
-    padding: 5px 10px; /* Adjust the button padding as needed */
-}
+        .search-container .btn-sm {
+            padding: 20px; /* Adjust the button padding as needed */
+        }
     </style>
 
-    <header class="p-3 text-bg-success">
-        <div class="d-flex flex-wrap align-items-center justify-content-between">
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li class="nav-item col-lg-auto">
-                    <img src="{{ asset('images/logoGetix.png') }}" alt="Logo" style="height: 40px;"> 
-                </li>
-            </ul>
+<header class="p-3 text-bg-success">
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li class="nav-item col-lg-auto">
+                <img src="{{ asset('images/logoGetix.png') }}" alt="Logo" style="height: 40px;"> 
+            </li>
+            
+        </ul>
 
-            <ul class="navbar-nav ml-auto d-flex flex-row">
+        <ul class="navbar-nav ml-auto d-flex flex-row">
+            <li class="nav-item">
                 <li><a class="dropdown-item" href="{{ url('homepage') }}">Logout</a></li>
-            </ul>
+            </li>
+        </ul>
 
-        </div>
-    </header>
+    </div>
+</header>
 
-    <section>
-        <nav>
-            <ul>
-                <li class="nav-item">
-                    <a href="{{ url('admindashboard') }}" class="nav-link active">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('event') }}" class="nav-link active">Event</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('report') }}" class="nav-link disabled" aria-current="page">Report</a>
-                </li>
-            </ul>
-        </nav>
+<section>
+    <nav>
+        <ul>
+            <li class="nav-item">
+                <a href="{{ url('admindashboard') }}" class="nav-link">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url('event') }}" class="nav-link" aria-current="page">Event</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url('reportpelanggan') }}" class="nav-link ">Report User</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url('reportevent') }}" class="nav-link active">Report Event</a>
+            </li>
+        </ul>
+    </nav>
         
         <div class="container">
-            <h1>Report Pelanggan</h1>
-            
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 float-right" role="search">
-                    <input type="search" class="form-control form-control-sm" placeholder="Search..." aria-label="Search">
+            <h1>Report User</h1>
+                <div class="form-group d-flex align-items-center justify-content-end">
+                    <input type="search" class="form-control"style="width:25%;" placeholder="Search..." aria-label="Search">
                     <button type="search" class="btn btn-primary btn-sm">Search</button>
-                </form>
-            
+                </div>
                 <div class="event-box">
-                <h1 style="padding: 20 px;">Event</h1>
+                <h1 style="padding: 20 px;">User</h1>
                     <table class="table table-striped border-dark text-center">
                                 <tr class="">
                                     <th>No</th>
-                                    <th>Gambar</th>
-                                    <th>Nama Event</th>
-                                    <th>Tanggal</th>
-                                    <th>Lokasi</th>
-                                    <th>Harga</th>
+                                    <th>Nama Pemesan</th>
+                                    <th>Identitas</th>
+                                    <th>Nomor Identitas</th>
+                                    <th>Email</th>
+                                    <th>No Whatsapp</th>
                                     <th>Keterangan</th>
+                                    <th class="text-center">Control</th>
                                 </tr>
-                            @forelse ($transaksi as $item)
+                            @forelse ($report as $item)
                             <tr>
                                 <td>{{ $item['no'] }} </td>
-                                <td><img class="gambarTransaksi" src="{{ $item['gambar']
-                                }}" alt=""></td>
                                 <td>{{ $item['nama'] }}</td>
-                                <td>{{ $item['tanggal']}}</td>
-                                <td>{{ $item['lokasi'] }}</td>
-                                <td>{{ $item['harga'] }}</td>
+                                <td>{{ $item['identitas']}}</td>
+                                <td>{{ $item['no_identitas'] }}</td>
+                                <td>{{ $item['email'] }}</td>
+                                <td>{{ $item['no_wa'] }}</td>
                                 <td>{{ $item['ket'] }} </td>
-                                <td><a href="{{ url('editPelanggan') }}" class="btn btn-outline-warning" onclick="return confirm('Are you sure you want to update?')">Update</a></td>
-
-                                
+                                <td>
+                                    <div class="d-flex">
+                                        <a href="{{ url('editPelanggan') }}" class="btn btn-outline-warning" onclick="return confirm('Are you sure you want to update?')">Update</a>
+                                        <button type="button" class="btn btn-danger mx-2" onclick="return confirm('Are you sure you want to delete user?')">Delete</button>
+                                    </div>
+                                </td>
                             </tr>
                             @empty
                             <div class="alert alert-danger">

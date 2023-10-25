@@ -4,7 +4,7 @@
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Event</title>
+    <title>Report User - Edit Pelanggan</title>
    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -65,7 +65,7 @@
             padding: 20px;
             width: 80%;
             background-color: #f1f1f1;
-            height: 300px; /* only for demonstration, should be removed */
+            height: 400px; /* only for demonstration, should be removed */
         }
         @media (max-width: 600px) {
             nav, article {
@@ -117,101 +117,100 @@
     <nav>
         <ul>
             <li class="nav-item">
-                <a href="{{ url('admindashboard') }}" class="nav-link">Dashboard</a>
+                <a href="{{ url('admindashboard') }}" class="nav-link ">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('event') }}" class="nav-link active" aria-current="page">Event</a>
+                <a href="{{ url('event') }}" class="nav-link " aria-current="page">Event</a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('reportpelanggan') }}" class="nav-link ">Report User</a>
+                <a href="{{ url('reportpelanggan') }}" class="nav-link active ">Report User</a>
             </li>
             <li class="nav-item">
                 <a href="{{ url('reportevent') }}" class="nav-link">Report Event</a>
             </li>
         </ul>
-    </nav>
+    </nav>    
+
 
         <form onsubmit="return validateForm()">
             <div class="container">
                 <div class="event-box">
-                    <h2 style="font-weight: bold; text-align: center;">Event Registration</h2>
+                    <h2 style="font-weight: bold; text-align: center;">Edit Pelanggan</h2>
                     <hr style="border: solid">
                         <div class="input">
-                            <label for="formNama" class="form-label">Penyelenggara</label>
-                            <input type="text" class="form-control" id="penyelenggara" placeholder="Masukkan Penyelenggara" required="">
+                            <label for="formNama" class="form-label">Nama Pemesan</label>
+                            <input type="text" class="form-control" id="namaPemesan" placeholder="Masukkan Nama Pemesan" required="">
                             <div class="invalid-feedback">
                                 Tolong harap diisi!
                             </div>
                         </div>
-                        <div class="input">
-                            <label for="formTiket" class="form-label">Nama Tiket</label>
-                            <input type="text" class="form-control" id="namaTiket" placeholder="Masukkan Tiket" required="">
-                            <div class="invalid-feedback">
-                                Isi Nama Event yang Anda Ikuti!
-                            </div>
-                        </div>
-                        <div class="input">
-                            <label for="formHarga" class="form-label">Harga Tiket</label>
-                            <input type="text" class="form-control" id="hargaTiket" placeholder="Masukkan Harga Tiket" required="">
-                            <div class="invalid-feedback">
-                                Masukkan Harga Tiket Event Anda!
-                            </div>
-                        </div>
-                        
+
                         <div class="row">
                             <div class="col">
                                 <div class="input">
-                                    <label for="formTgl" class="form-label">Tanggal</label>
-                                        <input type="date" class="form-control" id="tanggal" required="">
-                                        <div class="invalid-feedback">
-                                            Pilih Tanggal Event yang Anda!
-                                        </div>
+                                    <label for="formIdentitas" class="form-label">Identitas</label>
+                                    <select class="form-select" id="identitas" required="">
+                                        <option value="">Pilih Identitas</option>
+                                        <option value="KTP">KTP</option>
+                                        <option value="SIM">SIM</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                    Please enter your shipping address.
                                     </div>
                                 </div>
+                            </div>
                             <div class="col">
                                 <div class="input">
-                                    <label for="formWaktu" class="form-label">Waktu</label>
-                                    <input type="text" class="form-control" id="waktu" placeholder="Masukkan Jam" required="">
+                                    <label for="formNomor" class="form-label">Nomor Identitas</label>
+                                    <input type="text" class="form-control" id="nomorIdentitas" placeholder="Masukkan Nomor Identitas" required="">
                                     <div class="invalid-feedback">
-                                        Isi Pukul Berapa Event Anda!
+                                        Isi sesuai nomor identitas anda!
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="input">
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label">Input Poster</label>
-                                <input class="form-control" type="file" id="posterFile" required="">
+                            <label for="formEmail" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="email" placeholder="Masukkan Email" required="">
+                            <div class="invalid-feedback">
+                                Isi email yang anda miliki!
                             </div>
                         </div>
-                    </hr>
+                        <div class="input">
+                            <label for="formWA" class="form-label">Nomor Whatsapp</label>
+                            <input type="text" class="form-control" id="nomorWA" placeholder="Masukkan Nomor Whatsapp" required="">
+                            <div class="invalid-feedback">
+                                Masukkan Nomor Whatsapp Anda!
+                            </div>
+                        </div>
+                        
+                        <div class="input">
+                            <label for="formKet" class="form-label">Keterangan</label>
+                                <select class="form-select" id="ket" required="">
+                                    <option value="">Pilih Keterangan</option>
+                                    <option value="Lunas">Lunas</option>
+                                    <option value="Belum Lunas">Belum Lunas</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Pembayaran Anda telah lunas atau belum!
+                                </div>
+                        </div>
+
                     <script>
                         function inputForm() {
-                        const penyelenggara = document.getElementById("penyelenggara").value;
-                        const namaTiket = document.getElementById("namaTiket").value;
-                        const hargaTiket = document.getElementById("hargaTiket").value;
-                        const tanggal = document.getElementById("tanggal").value;
-                        const waktu = document.getElementById("waktu").value;
-                        const poster = document.getElementById("posterFile").value;
+                        const namaPemesan = document.getElementById("namaPemesan").value;
+                        const identitas = document.getElementById("identitas").value;
+                        const nomorIdentitas = document.getElementById("nomorIdentitas").value;
+                        const email = document.getElementById("email").value;
+                        const nomorWA = document.getElementById("nomorWA").value;
+                        const ket = document.getElementById("ket").value;
                         
-                        if (penyelenggara.trim() === "") {
-                            alert("Penyelenggara Tidak boleh Kosong!");
+                        if (identitas.trim() === "") {
+                            alert("Pilih salah satu identitas!");
                             return false;
-                        }else if (namaTiket.trim() === "") {
-                            alert("Nama Tiket Tidak Boleh Kosong!");
-                            return false;
-                        }else if (hargaTiket.trim() == "") {
-                            alert("Harga Tiket Tidak Boleh Kosong");
-                            return false;
-                        }else if (tanggal.trim() == "") {
-                            alert("Pilih Tanggal Event Anda!");
-                            return false;
-                        }else if (waktu.trim() == "") {
-                            alert("Waktu Event Tidak Boleh Kosong!");
-                            return false;
-                        }else if (poster.trim() == "") {
-                            alert("Silahkan Input Poster Event Anda!");
+                        }else if (nomorIdentitas.trim() === "") {
+                            alert("Harus Masukan Sesuai Nomor Identitas Anda!");
                             return false;
                         }else{
                             return true;
@@ -224,16 +223,19 @@
                                 const konfirmasi = confirm("Apakah Data Anda Sudah Benar?");
                                 if (konfirmasi) { 
                                     alert("Data Berhasil Disimpan!");
+                                    
                                 } else {
                                     alert("Data Gagal Disimpan!");    
-                                }
-                            } 
+                                }  
+                            }
+                           
                         }       
                     </script>
-
+                
                     <div style="margin-left: 450px; margin-top: 30px;">
                         <input type="reset" style="border: 1px solid red; color: red;" id="reset" name="reset">
-                        <input type="button" onclick="showAlert()" value="Submit" style="border: 1px solid green; color: white; background-color: green;" type="submit" />
+                        <td><a href="{{ url('reportpelanggan') }}" class="btn btn-outline-success" style="border: 1px solid green; color: white; background-color: green;" onclick="return confirm('Are you finished to update?')">Submit</a></td>
+                        <!-- <input type="button" onclick="showAlert()" value="Submit" style="border: 1px solid green; color: white; background-color: green;" type="submit" /> -->
                     </div>    
                 </div>
             </div>
