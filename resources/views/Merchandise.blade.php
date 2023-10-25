@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Home Page Tiket</title>
+    <title>Merchandise</title>
    <link rel="stylesheet" href="apps.css">
     <!-- Fonts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-3 "> 
                     <li class="nav-item">
-                        <a class="nav-link text-white active" href="{{ url('homepage') }}">Event</a>
+                        <a class="nav-link text-white" href="{{ url('homepage') }}">Event</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white active" href="{{ url('merchandise') }}">Merchandise</a>
@@ -45,13 +45,13 @@
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active" style="height: 38rem">
-            <img src="{{ asset('images/tulusPoster.jpg') }}" class="d-block w-100" alt="...">
+            <img src="{{ asset('images/merchandisePoster1.jpg') }}" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item" style="height: 38rem">
-            <img src="{{ asset('images/pamungkasPoster.jpg') }}" class="d-block w-100" alt="...">
+            <img src="{{ asset('images/merchandisePoster2.jpg') }}" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item" style="height: 38rem">
-            <img src="{{ asset('images/hindiaPoster.jpg') }}" class="d-block w-100" alt="">
+            <img src="{{ asset('images/merchandisePoster3.jpeg') }}" class="d-block w-100" alt="">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -65,7 +65,7 @@
       </div>
     
       <div class="container p-2 mt-4 d-flex justify-content-between">
-        <h1 class="text-success">BEST FOR YOU</h1>
+        <h1 class="text-success">Best Merchandise For You</h1>
         <form class="d-flex">
             <input class="form-control me-2 border-success"  type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-success" type="submit">Search</button>
@@ -73,21 +73,13 @@
       </div>
 
       <div class="container p-2 mt-3 d-flex flex-wrap justify-content-evenly mb-5" style="width: 80%;">
-        @forelse ($tickets as $item)
+        @forelse ($merchandises as $item)
         <div class="card p-2 mt-4 shadow-lg border-success"  style="width: 19rem">
-            <img class="rounded" src="{{asset('images/1.png')}}" alt="">
+            <img class="rounded" src="{{asset('images/merch1.jpeg')}}" alt="">
             <h5 class="mt-1 mx-1 text-dark">{{ $item['name'] }}</h5>
                 <div class="container mt-3 d-flex align-items-start">
-                    <img style="width: 24px" src="{{ asset('images/calendar_1.png') }}" alt="">
-                    <p class="card-text mx-2 text-secondary" style="font-size:16px">{{ $item['date'] }}</p>
-                </div>
-                <div class="container mt-3 d-flex align-items-start">
-                    <img style="width: 24px" src="{{ asset('images/time_1.png') }}" alt="">
-                    <p class="card-text mx-2 text-secondary" style="font-size:16px">{{ $item['jam'] }} WIB</p>
-                </div>
-                <div class="container mt-3 d-flex align-items-start">
-                    <img style="width: 24px" src="{{ asset('images/location_1.png') }}" alt="">
-                    <p class="card-text mx-2 text-secondary" style="font-size:16px">{{ $item['lokasi'] }}</p>
+                    <p class="card-text mx-2 text-dark" style="font-size:20px">Stok</p>
+                    <p class="card-text mx-2 text-secondary" style="font-size:20px">{{ $item['stok'] }}</p>
                 </div>
             <hr class="mb-0">
             <div class="d-flex justify-content-between p-2">
@@ -96,7 +88,7 @@
                     <h4 class="m-0"><strong>{{ $item['harga'] }}</strong></h4>
                 </div>
                 <div class="d-flex align-items-center">
-                    <button class="btn btn-success" style="font-size:20px" onclick="window.location='{{ url('pembelian') }}'">BELI</button>
+                    <button class="btn btn-success" style="font-size:20px" onclick="window.location='{{ url('pembelianmerch') }}'">BELI</button>
                 </div>
             </div>
         </div>

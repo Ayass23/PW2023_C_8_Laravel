@@ -452,3 +452,114 @@ Route::get('/editPelanggan', function () {
 Route::get('/editEvent', function () {
     return view('EditEvent');
 });
+
+Route::get('/merch', function () {
+    return view('Merch');
+});
+
+Route::get('/merchandise', function () {
+    return view('Merchandise', [
+        'merchandises' => [
+            [
+                'name' => 'Kaos Official Coldplay',
+                'stok' => '100',
+                'harga' => 'Rp.300.000',
+            ],
+            [
+                'name' => 'Kaos Official Coldplay',
+                'stok' => '100',
+                'harga' => 'Rp.300.000',
+            ],
+            [
+                'name' => 'Kaos Official Coldplay',
+                'stok' => '80',
+                'harga' => 'Rp.300.000',
+            ],
+            [
+                'name' => 'Kaos Official Coldplay',
+                'stok' => '80',
+                'harga' => 'Rp.300.000',
+            ],
+            [
+                'name' => 'Kaos Official Coldplay',
+                'stok' => '80',
+                'harga' => 'Rp.300.000',
+            ],
+            [
+                'name' => 'Kaos Official Coldplay',
+                'stok' => '80',
+                'harga' => 'Rp.300.000',
+            ]
+        ]
+    ]);
+});
+
+Route::get('/pembelianmerch', function () {
+    return view('PembelianMerch', [
+        'merch' => [
+            [
+                'nama' => 'Kaos Official Coldplay',
+                'jumlah' => 5,
+                'harga' => '300.000',
+            ]
+        ]
+    ]);
+});
+
+Route::get('/pembayaranmerch', function () {
+    return view('PembayaranMerch');
+});
+
+Route::get('/addMerchandise', function () {
+    return view('addMerchandise');
+});
+
+Route::get('/reportmerchandise', function () {
+    return view('ReportMerchandise', [
+        'reportMerchandise' => [
+            [
+                'no' => 1,
+                'gambar' => 'https://www.gig-merch.com/cdn/shop/files/SLIDER-MORRISSEY_1500x.jpg?v=1691568776',
+                'nama'=> 'Kaos Official Coldplay',
+                'jenis'=> 'Pakaian',
+                'stok' => '100',
+                'harga' => 'Rp.300.000',
+            ],
+            [
+                'no' => 2,
+                'gambar' => 'https://www.gig-merch.com/cdn/shop/files/SLIDER-MORRISSEY_1500x.jpg?v=1691568776',
+                'nama'=> 'Kaos Official Coldplay',
+                'jenis'=> 'Pakaian',
+                'stok' => '100',
+                'harga' => 'Rp.300.000',
+            ],
+            [
+                'no' => 3,
+                'gambar' => 'https://www.gig-merch.com/cdn/shop/files/SLIDER-MORRISSEY_1500x.jpg?v=1691568776',
+                'nama'=> 'Kaos Official Coldplay',
+                'jenis'=> 'Pakaian',
+                'stok' => '100',
+                'harga' => 'Rp.300.000',
+            ],
+            [
+                'no' => 4,
+                'gambar' => 'https://www.gig-merch.com/cdn/shop/files/SLIDER-MORRISSEY_1500x.jpg?v=1691568776',
+                'nama'=> 'Kaos Official Coldplay',
+                'jenis'=> 'Pakaian',
+                'stok' => '100',
+                'harga' => 'Rp.300.000',
+            ],
+            [
+                'no' => 5,
+                'gambar' => 'https://www.gig-merch.com/cdn/shop/files/SLIDER-MORRISSEY_1500x.jpg?v=1691568776',
+                'nama'=> 'Kaos Official Coldplay',
+                'jenis'=> 'Pakaian',
+                'stok' => '100',
+                'harga' => 'Rp.300.000',
+            ]
+        ]
+    ]);
+});
+Route::get('/editMerchandise', function () {
+    return view('EditMerchandise');
+});
