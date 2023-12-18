@@ -12,7 +12,7 @@
 
 <body>
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
             <a class="navbar-brand" href="#"><img style="width: 4rem" src="{{ asset('images/GE.png') }}" alt=""></a>
             <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,16 +22,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-3 "> 
                     <li class="nav-item">
-                        <a class="nav-link text-white active" href="{{ url('homepage') }}">Event</a>
+                        <a class="nav-link  active" href="{{ url('homepage') }}">Event</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white active" href="{{ url('merchandise') }}">Merchandise</a>
+                        <a class="nav-link " href="{{ url('merchandise') }}">Merchandise</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('login') }}">Make Event</a>
+                        <a class="nav-link " href="{{ url('login') }}">Make Event</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('profile') }}">Profile</a>
+                        <a class="nav-link " href="{{ url('profile') }}">Profile</a>
                     </li>
                 </ul>
                 <div>

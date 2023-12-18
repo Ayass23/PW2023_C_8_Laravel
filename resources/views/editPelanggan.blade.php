@@ -13,187 +13,98 @@
 </head>
 
 <body>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: rgb(255, 255, 255);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            font-family: Arial, sans-serif;
-        }
-        .navbar-nav {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-item {
-            margin-left: 15px; 
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: white;
-        }
-
-        nav {
-            float: left;
-            width: 20%;
-            height: 630px;
-            background: #ccc;
-            padding: 20px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        section::after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        .container {
-            float: left;
-            padding: 20px;
-            width: 80%;
-            background-color: #f1f1f1;
-            height: 400px; /* only for demonstration, should be removed */
-        }
-        @media (max-width: 600px) {
-            nav, article {
-                width: 100%;
-                height: auto;
-            }
-        }
-
-        .card {
-            width: 200px; 
-            height: 100px; 
-        }
-
-        .gambarKelas {
-            width: 300px;
-        }
-
-        .event-box {
-            margin-top: 20px;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        .input{
-            margin-bottom: 20px;
-        }
-    </style>
-
-<header class="p-3 text-bg-success">
-    <div class="d-flex flex-wrap align-items-center justify-content-between">
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li class="nav-item col-lg-auto">
-                <img src="{{ asset('images/logoGetix.png') }}" alt="Logo" style="height: 40px;"> 
-            </li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img style="width: 4rem" src="{{ asset('images/GE.png') }}" alt=""></a>
+            <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             
-        </ul>
+            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-3 "> 
+                    <li class="nav-item">
+                        <a href="{{ url('admindashboard') }}" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('event') }}" class="nav-link active" aria-current="page">Add Event</a>
+                    </li>
+                    <li class="nav-item">
+                            <a href="{{ url('addMerchandise') }}" class="nav-link " aria-current="page">Add Merchandise</a>
+                        </li>
+                    <li class="nav-item">
+                        <a href="{{ url('reportpelanggan') }}" class="nav-link  ">Report User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('reportevent') }}" class="nav-link ">Report Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('reportmerchandise') }}" class="nav-link ">Report Merchandise</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="{{ url('homepage') }}" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <ul class="navbar-nav ml-auto d-flex flex-row">
-            <li class="nav-item">
-                <li><a class="dropdown-item" href="{{ url('homepage') }}">Logout</a></li>
-            </li>
-        </ul>
-
-    </div>
-</header>
-
-<section>
-    <nav>
-        <ul>
-        <ul>
-            <li class="nav-item">
-                <a href="{{ url('admindashboard') }}" class="nav-link ">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url('event') }}" class="nav-link " aria-current="page">Event</a>
-            </li>
-            <li class="nav-item">
-                    <a href="{{ url('addMerchandise') }}" class="nav-link active" aria-current="page">Add Merchandise</a>
-                </li>
-            <li class="nav-item">
-                <a href="{{ url('reportpelanggan') }}" class="nav-link ">Report User</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url('reportevent') }}" class="nav-link">Report Event</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url('reportmerchandise') }}" class="nav-link">Report Merchandise</a>
-            </li>
-        </ul>
-        </ul>
-    </nav>   
-
-
-        <form onsubmit="return validateForm()">
-            <div class="container">
-                <div class="event-box">
-                    <h2 style="font-weight: bold; text-align: center;">Edit Pelanggan</h2>
-                    <hr style="border: solid">
-                        <div class="input">
-                            <label for="formNama" class="form-label">Nama Pemesan</label>
-                            <input type="text" class="form-control" id="namaPemesan" placeholder="Masukkan Nama Pemesan" required="">
-                            <div class="invalid-feedback">
-                                Tolong harap diisi!
-                            </div>
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h2 style="font-weight: bold; text-align: center;">Edit Pelanggan</h2>
+                <hr style="border: solid">
+                <form>
+                    <div class="mb-3">
+                        <label for="NamaPemesan" class="form-label">Nama Pemesan</label>
+                        <input type="text" class="form-control" id="NamaPemesan" placeholder="Masukkan Nama Pemesan" required="">
+                        <div class="invalid-feedback">
+                            Tolong harap diisi!
                         </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col">
-                                <div class="input">
-                                    <label for="formIdentitas" class="form-label">Identitas</label>
-                                    <select class="form-select" id="identitas" required="">
-                                        <option value="">Pilih Identitas</option>
-                                        <option value="KTP">KTP</option>
-                                        <option value="SIM">SIM</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                    Please enter your shipping address.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="input">
-                                    <label for="formNomor" class="form-label">Nomor Identitas</label>
-                                    <input type="text" class="form-control" id="nomorIdentitas" placeholder="Masukkan Nomor Identitas" required="">
-                                    <div class="invalid-feedback">
-                                        Isi sesuai nomor identitas anda!
-                                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="input">
+                                <label for="formIdentitas" class="form-label">Identitas</label>
+                                <select class="form-select" id="identitas" required="">
+                                    <option value="">Pilih Identitas</option>
+                                    <option value="KTP">KTP</option>
+                                    <option value="SIM">SIM</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                Please enter your shipping address.
                                 </div>
                             </div>
                         </div>
+                        <div class="col">
+                            <div class="input">
+                                <label for="formNomor" class="form-label">Nomor Identitas</label>
+                                <input type="text" class="form-control" id="nomorIdentitas" placeholder="Masukkan Nomor Identitas" required="">
+                                <div class="invalid-feedback">
+                                    Isi sesuai nomor identitas anda!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div class="input">
+                    <div class="input mb-3">
                             <label for="formEmail" class="form-label">Email</label>
                             <input type="text" class="form-control" id="email" placeholder="Masukkan Email" required="">
                             <div class="invalid-feedback">
                                 Isi email yang anda miliki!
                             </div>
                         </div>
-                        <div class="input">
+                        <div class="input mb-3">
                             <label for="formWA" class="form-label">Nomor Whatsapp</label>
                             <input type="text" class="form-control" id="nomorWA" placeholder="Masukkan Nomor Whatsapp" required="">
                             <div class="invalid-feedback">
                                 Masukkan Nomor Whatsapp Anda!
                             </div>
                         </div>
-                        
-                        <div class="input">
+        
+                        <div class="input ">
                             <label for="formKet" class="form-label">Keterangan</label>
                                 <select class="form-select" id="ket" required="">
                                     <option value="">Pilih Keterangan</option>
@@ -204,51 +115,19 @@
                                     Pembayaran Anda telah lunas atau belum!
                                 </div>
                         </div>
-
-                    <script>
-                        function inputForm() {
-                        const namaPemesan = document.getElementById("namaPemesan").value;
-                        const identitas = document.getElementById("identitas").value;
-                        const nomorIdentitas = document.getElementById("nomorIdentitas").value;
-                        const email = document.getElementById("email").value;
-                        const nomorWA = document.getElementById("nomorWA").value;
-                        const ket = document.getElementById("ket").value;
-                        
-                        if (identitas.trim() === "") {
-                            alert("Pilih salah satu identitas!");
-                            return false;
-                        }else if (nomorIdentitas.trim() === "") {
-                            alert("Harus Masukan Sesuai Nomor Identitas Anda!");
-                            return false;
-                        }else{
-                            return true;
-                        }
-                                        
-                        };
-
-                        function showAlert() {
-                            if (inputForm()) {
-                                const konfirmasi = confirm("Apakah Data Anda Sudah Benar?");
-                                if (konfirmasi) { 
-                                    alert("Data Berhasil Disimpan!");
-                                    
-                                } else {
-                                    alert("Data Gagal Disimpan!");    
-                                }  
-                            }
-                           
-                        }       
-                    </script>
-                
-                    <div style="margin-left: 450px; margin-top: 30px;">
-                        <input type="reset" style="border: 1px solid red; color: red;" id="reset" name="reset">
-                        <td><a href="{{ url('reportpelanggan') }}" class="btn btn-outline-success" style="border: 1px solid green; color: white; background-color: green;" onclick="return confirm('Are you finished to update?')">Submit</a></td>
-                        <!-- <input type="button" onclick="showAlert()" value="Submit" style="border: 1px solid green; color: white; background-color: green;" type="submit" /> -->
-                    </div>    
-                </div>
+                    
+                    <div class="d-flex justify-content-center mt-4">
+                        <div class="d-grid">
+                            <button class="btn btn-outline-danger" type="submit">Cancel</button>
+                        </div>
+                        <div class="d-grid ms-3">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
-    </section>
+        </div>
+    </div>
 
     <script src= "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity= "sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

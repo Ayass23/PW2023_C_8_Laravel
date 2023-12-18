@@ -249,7 +249,56 @@ Route::get('/admindashboard', function () {
 });
 
 Route::get('/event', function () {
-    return view('Event');
+    return view('Event',[
+        
+        'reportEvent' => [
+            [
+                'no' => 1,
+                'gambar' => 'https://ik.imagekit.io/tvlk/xpe-asset/AyJ40ZAo1DOyPyKLZ9c3RGQHTP2oT4ZXW+QmPVVkFQiXFSv42UaHGzSmaSzQ8DO5QIbWPZuF+VkYVRk6gh-Vg4ECbfuQRQ4pHjWJ5Rmbtkk=/4956795833494/Devano%2520Danendra%2520Intimate%2520Virtual%2520Concert%2520-%2520Online%2520Concert-98e4011b-59fa-4bca-9d6b-7ecdaf6134f1.jpeg?tr=q-60,c-at_max,w-1280,h-720&_src=imagekit',
+                'penyelenggara'=> 'AKA',
+                'nama'=> 'Virtual Concert : Devano Danendra',
+                'harga' => 'Rp.60.000',
+                'tanggal' => '26 September 2023',
+                'waktu' => '18.00 WIB',
+            ],
+            [
+                'no' => 2,
+                'gambar' => 'https://static.gatra.com/foldershared/images/2023/iwan/07-Jul/IMG_20230711_161148.jpg',
+                'penyelenggara'=> 'SONGS',
+                'nama'=> 'Electrochestra : Tiga Masa',
+                'harga' => 'Rp.150.000',
+                'tanggal' => '26 September 2023',
+                'waktu' => '19.00 WIB',
+            ],
+            [
+                'no' => 3,
+                'gambar' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVJhHdye3461OAcaubRyy-19DNCoMuIMvnQg&usqp=CAU',
+                'penyelenggara'=> 'INIKK',
+                'nama'=> 'Spesial Konser : Sheila On 7',
+                'harga' => 'Rp.100.000',
+                'tanggal' => '28 September 2023',
+                'waktu' => '19.00 WIB',
+            ],
+            [
+                'no' => 4,
+                'gambar' => 'https://editorial.femaledaily.com/wp-content/uploads/2022/11/gudfest-2.png',
+                'penyelenggara'=> 'SSIG',
+                'nama'=> 'GUD FEST',
+                'harga' => 'Rp.40.000',
+                'tanggal' => '29 September 2023',
+                'waktu' => '16.00 WIB',
+            ],
+            [
+                'no' => 5,
+                'gambar' => 'https://static.gatra.com/foldershared/images/2023/RLN/05-May/1591033789-758x644_(1).jpg',
+                'penyelenggara'=> 'PP3',
+                'nama'=> 'COLDPLAY : MUSIC of the SPHERES',
+                'harga' => 'Rp.600.000',
+                'tanggal' => '29 September 2023',
+                'waktu' => '17.00 WIB',
+            ]
+        ]
+    ]);
 });
 
 Route::get('/report', function () {
