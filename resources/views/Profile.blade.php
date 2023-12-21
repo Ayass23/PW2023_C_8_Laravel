@@ -63,37 +63,35 @@
                 <div class="featured-image mb-3">
                     <img style="width: 15rem; border-radius: 50%; border: 2px solid #5cb85c;" class="shadow-lg" src="{{ asset(Auth::user()->image) }} " alt="">
                 </div>
-                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#changePictureModal">Change Picture</button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="changePictureModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Change Profile Picture</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('updateUser') }}" method="post" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="image" class="form-label">Choose a new picture:</label>
-                                        <input type="file" class="form-control" id="image" name="image">
-                                    </div>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="col-md-6">
                 <div class="row align-items-center justify-content-center p-2 text-success">
                     <div class="header-text mb-4">
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-outline-success btn-pill" id="description-button">Your Profile</button>
-                            <button class="btn btn-outline-success btn-pill mx-2" id="ticket-button">History</button>
+                            <button class="btn btn-outline-success btn-pill mx-2" id="ticket-button">Edit Profile</button>
+                        </div>
+                        <div class="modal fade" id="changePictureModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Change Profile Picture</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('updateUser') }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label for="image" class="form-label">Choose a new picture:</label>
+                                                <input type="file" class="form-control" id="image" name="image">
+                                            </div>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div id="content">
                             <div id="description" style="display: none" class="mb-3">
@@ -116,45 +114,25 @@
                                 </div>
                             </div>
                             <div id="ticket" style="display: none">
-                                <div class="card p-2 m-3 d-flex justify-content-center " id="cardmain" style="border: 2px solid #5cb85c; display: flex; max-height: 300px; overflow-y: auto; ">
-                                    <div class="card p-1 mt-2 d-flex justify-content-center" style="border: 2px solid #5cb85c; display: flex; height:60%;">
-                                        <div class="container d-flex justify-content-center " >
-                                            <img src="{{asset('images/1.png')}}" class="rounded" style="width: 100%; height: auto;" alt="">
+                                <div class="container mt-3">
+                                    <form action="{{ route('updateUser') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-group mb-3">
+                                            <label for="nama"><strong>Username</strong></label>
+                                            <input type="text" id="nama" class="form-control form-control-lg bg-light fs-6 mt-2 " name="username" value="{{ old('username', Auth::user()->username)}}" required style="border-color: #5cb85c;">
                                         </div>
-                                        <div class="container mt-2">
-                                            <h5><strong>Virtual Concert : Devano Danenda</strong></h5>
-                                            <hr class="mb-0">
-                                            <div class="container d-flex justify-content-between mt-0" >
-                                                <div>
-                                                    <p class="text-secondary m-0">Status :</p>
-                                                    <h5 class="text-success"><strong>LUNAS</strong></h5>
-                                                </div>
-                                                <div class="d-flex align-self-center">
-                                                    <button class="btn btn-success">Lihat Tiket</button>
-                                                </div>
-                                            </div>
+                                        <div class="form-group mb-3">
+                                            <label for="nomor"><strong>Nomor Telepon</strong></label>
+                                            <input type="text" id="nomor" class="form-control form-control-lg bg-light fs-6" name="noTelp" value="{{ old('noTelp', Auth::user()->noTelp)}}" required style="border-color: #5cb85c;">
                                         </div>
-                                    </div>
-                                    <div class="card p-1 mt-2 d-flex justify-content-center" style="border: 2px solid #5cb85c; display: flex;">
-                                        <div class="container d-flex justify-content-center " >
-                                            <img src="{{asset('images/1.png')}}" class="rounded" style="width: 100%; height: auto;" alt="">
+                                        <div class="form-group mb-3">
+                                            <label for="email"><strong>Photo Profile</strong></label>
+                                            <input type="file" name="image" id="email" class="form-control form-control-lg bg-light fs-6" name="image" value="{{old ('image',Auth::user()->image) }}" required style="border-color: #5cb85c;">
                                         </div>
-                                        <div class="container mt-2">
-                                            <h5><strong>Virtual Concert : Devano Danenda</strong></h5>
-                                            <hr class="mb-0">
-                                            <div class="container d-flex justify-content-between mt-0" >
-                                                <div>
-                                                    <p class="text-secondary m-0">Status :</p>
-                                                    <h5 class="text-danger"><strong>BELUM LUNAS</strong></h5>
-                                                </div>
-                                                <div class="d-flex align-self-center">
-                                                    <button class="btn btn-success">Bayar</button>
-                                                </div>
-                                                
-                                            </div>
-                                            
+                                        <div class="d-flex justify-content-center">
+                                            <button type="submit" class="btn btn-success">Save </button>
                                         </div>
-                                    </div>  
+                                    </form>
                                 </div>
                             </div>
                         </div>

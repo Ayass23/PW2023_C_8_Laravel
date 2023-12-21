@@ -18,7 +18,6 @@ class KonserTransaction extends Model
         'no_telp',
         'quantity',
         'total',
-        'status',
     ];
 
     public function konser()

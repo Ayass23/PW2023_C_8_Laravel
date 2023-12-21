@@ -17,7 +17,6 @@ class MerchanTransaction extends Model
         'no_telp',
         'quantity',
         'total',
-        'status',
     ];
 
     public function merch()

@@ -84,6 +84,10 @@
                             <img style="width: 36px" src="{{ asset('images/location_1.png') }}" alt="">
                             <p class="card-text mx-2 text-success">{{$konser->lokasi}}</p>
                         </div>
+                        <div class="container mt-3 d-flex align-items-start">
+                            <img style="width: 24px" src="{{ asset('images/stok.png') }}" alt="">
+                            <p class="card-text mx-2 text-secondary" style="font-size:16px">{{ $konser->jumlah }}</p>
+                        </div>
                     </div>
                 </div>
             </div>

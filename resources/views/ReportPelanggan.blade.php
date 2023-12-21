@@ -56,7 +56,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-body ">
-                <h1>MERCHANDISE REPORT</h1>
+                <h1>USER REPORT</h1>
                 
                 <div class="container mt-3 ">
                     <table class="table">
@@ -91,7 +91,7 @@
                             </tr>
                             @empty
                                 <div class="alert alert-danger">
-                                    BELUM ADA DATA MERCHANDISE
+                                    BELUM ADA DATA PELANGGAN
                                 </div>
                             @endforelse
                         </tbody>

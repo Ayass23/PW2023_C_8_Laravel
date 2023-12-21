@@ -66,10 +66,20 @@ class RegisterController extends Controller
 
     public function updateUser(Request $request){
         $validated = $request->validate([
+            'username' => 'required',
+            'noTelp'=>'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048|required',
         ]);
 
         $user = User::findOrFail(auth()->id());
+
+        $user->username = $request->username;
+        $user->noTelp = $request->noTelp;
+        $validated['email'] = $user->email;
+        $validated['role'] = $user->role;
+        $validated['password'] = $user->password;
+        $validated['verify_key'] = $user->verify_key;
+        $validated['active'] = $user->active;
 
         $validated['image'] = $user->image;
         $path = public_path('public/images');

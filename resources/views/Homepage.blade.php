@@ -101,6 +101,10 @@
                     <img style="width: 24px" src="{{ asset('images/location_1.png') }}" alt="">
                     <p class="card-text mx-2 text-secondary" style="font-size:16px">{{ $item->lokasi }}</p>
                 </div>
+                <div class="container mt-3 d-flex align-items-start">
+                    <img style="width: 24px" src="{{ asset('images/stok.png') }}" alt="">
+                    <p class="card-text mx-2 text-secondary" style="font-size:16px">{{ $item->jumlah }}</p>
+                </div>
             <hr class="mb-0">
             <div class="d-flex justify-content-between p-2">
                 <div>

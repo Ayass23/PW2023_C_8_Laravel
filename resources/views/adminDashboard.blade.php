@@ -134,7 +134,7 @@
                         </tr>
                         @empty
                         <div class="alert alert-danger">
-                            Data Kelas masih kosong
+                            DBELUM ADA DATA EVENT
                         </div>
                         @endforelse
                     </tbody>

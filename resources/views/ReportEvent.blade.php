@@ -99,7 +99,7 @@
                             </tr>
                             @empty
                             <div class="alert alert-danger">
-                                Data Konser masih kosong
+                                BELUM ADA DATA EVENT
                             </div>
                             @endforelse
                         </tbody>
