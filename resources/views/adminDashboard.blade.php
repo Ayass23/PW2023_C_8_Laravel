@@ -23,27 +23,27 @@
             <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-3 "> 
                     <li class="nav-item">
-                        <a href="{{ url('admindashboard') }}" class="nav-link active">Dashboard</a>
+                        <a href="{{ url('adminDashboard') }}" class="nav-link active">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('event') }}" class="nav-link  " aria-current="page">add Event</a>
+                        <a href="{{ url('addEvent') }}" class="nav-link  " aria-current="page">add Event</a>
                     </li>
                     <li class="nav-item">
                             <a href="{{ url('addMerchandise') }}" class="nav-link " aria-current="page">Add Merchandise</a>
                         </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportpelanggan') }}" class="nav-link  ">Report User</a>
+                        <a href="{{ url('ReportUser') }}" class="nav-link  ">Report User</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportevent') }}" class="nav-link ">Report Event</a>
+                        <a href="{{ url('ReportEvent') }}" class="nav-link ">Report Event</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportmerchandise') }}" class="nav-link ">Report Merchandise</a>
+                        <a href="{{ url('ReportMerchandise') }}" class="nav-link ">Report Merchandise</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="{{ url('homepage') }}" class="nav-link">Logout</a>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="{{ route('actionLogout') }}"><i class=""></i> Logout</a>
                     </li>
                 </ul>
             </div>
@@ -54,32 +54,42 @@
             <div class="row align-items-center justify-content-around mt-3 ">
                 <h1>Dashboard</h1>
                 <div class="row mt-3">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="card">
                             <div class="d-flex justify-content-center m-1">
                                 <div class="text-center mt-2">
                                     <p class="mb-3" style="font-size: 36px">Total Event</p>
-                                    <p style="font-size: 36px"><strong>100</strong></p>
+                                    <p style="font-size: 36px"><strong>{{$totalKonser}}</strong></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="d-flex justify-content-center m-1">
+                                <div class="text-center mt-2">
+                                    <p class="mb-3" style="font-size: 36px">Total Merchandise</p>
+                                    <p style="font-size: 36px"><strong>{{$totalMerch}}</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="card">
                             <div class="d-flex justify-content-center m-1">
                                 <div class="text-center mt-2">
                                     <p class="mb-3" style="font-size: 36px">Total Tiket Terjual</p>
-                                    <p style="font-size: 36px"><strong>100</strong></p>
+                                    <p style="font-size: 36px"><strong>{{$totalTiketTerjual}}</strong></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="card">
                             <div class="d-flex justify-content-center m-1">
                                 <div class="text-center mt-2">
-                                    <p class="mb-3" style="font-size: 36px">Total Penjualan</p>
-                                    <p style="font-size: 36px"><strong>Rp. 100.000.000</strong></p>
+                                    <p class="mb-3" style="font-size: 34px">Total Merchandise Terjual</p>
+                                    <p style="font-size: 36px"><strong>{{$totalMerchanTerjual}}</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -96,26 +106,24 @@
                             <th>Tanggal</th>
                             <th>Lokasi</th>
                             <th>Harga</th>
-                            <th>Total Penjualan</th>
-                            <th>Banyak Jenis Tiket</th>
+                            <th>Stok Tiket</th>
                             <th>Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($transaksi as $item)
+                        @forelse ($konser as $item)
                         <tr>
-                            <td>{{ $item['no'] }} </td>
-                            <td><img class="gambarTransaksi" src="{{ $item['gambar']
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td><img class="gambarTransaksi" src="{{ asset($item->poster)
                             }}" alt="" style="width: 300px"></td>
                             <td>{{ $item['nama'] }}</td>
-                            <td>{{ $item['date']}}</td>
+                            <td>{{ \Carbon\Carbon::parse($item['tanggal'])->format('d F Y') }}</td>
                             <td>{{ $item['lokasi'] }}</td>
                             <td>{{ $item['harga'] }}</td>
-                            <td>{{ $item['total'] }}</td>
-                            <td>{{ $item['jenis'] }}</td>
+                            <td>{{ $item['jumlah'] }}</td>
                             <td>
                                 <p class="ms-1"> 
-                                @if ($item['ket'] === 'Available')
+                                @if ($item['jumlah'] != 0)
                                     <span class="badge bg-success">Available</span>
                                 @else
                                     <span class="badge bg-secondary">Unavailable</span>

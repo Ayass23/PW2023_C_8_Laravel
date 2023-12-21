@@ -23,33 +23,33 @@
             <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-3 "> 
                     <li class="nav-item">
-                        <a href="{{ url('admindashboard') }}" class="nav-link">Dashboard</a>
+                        <a href="{{ url('adminDashboard') }}" class="nav-link active">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('event') }}" class="nav-link active" aria-current="page">Add Event</a>
+                        <a href="{{ url('addEvent') }}" class="nav-link  " aria-current="page">add Event</a>
                     </li>
                     <li class="nav-item">
                             <a href="{{ url('addMerchandise') }}" class="nav-link " aria-current="page">Add Merchandise</a>
                         </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportpelanggan') }}" class="nav-link  ">Report User</a>
+                        <a href="{{ url('ReportUser') }}" class="nav-link  ">Report User</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportevent') }}" class="nav-link ">Report Event</a>
+                        <a href="{{ url('ReportEvent') }}" class="nav-link ">Report Event</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportmerchandise') }}" class="nav-link ">Report Merchandise</a>
+                        <a href="{{ url('ReportMerchandise') }}" class="nav-link ">Report Merchandise</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="{{ url('homepage') }}" class="nav-link">Logout</a>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="{{ route('actionLogout') }}"><i class=""></i> Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
+    
     <div class="container mt-4">
         <div class="card">
             <div class="card-body">

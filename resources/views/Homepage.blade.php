@@ -19,25 +19,39 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-3 "> 
+            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-3 ">
+                  @if (Auth::user()->role == 'admin')
                     <li class="nav-item">
-                        <a class="nav-link  active" href="{{ url('homepage') }}">Event</a>
+                      <a class="nav-link  active" href="{{ url('home') }}">Event</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{ url('merchandise') }}">Merchandise</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ url('login') }}">Make Event</a>
+                        <a class="nav-link " href="{{ route('addEvent') }}">Make Event</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{ url('profile') }}">Profile</a>
                     </li>
-                </ul>
-                <div>
+                  @else
+                  <li class="nav-item">
+                    <a class="nav-link  active" href="{{ url('home') }}">Event</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link " href="{{ url('merchandise') }}">Merchandise</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link " href="{{ url('profile') }}">Profile</a>
+                  </li>
+                  @endif 
                     
-                </div>
-                
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item ">
+                    <a class="nav-link" href="{{ route('actionLogout') }}"><i class=""></i> Logout</a>
+                  </li>
+              </ul>
             </div>
         </div>
     </nav>
@@ -66,45 +80,57 @@
     
       <div class="container p-2 mt-4 d-flex justify-content-between">
         <h1 class="text-success">BEST FOR YOU</h1>
-        <form class="d-flex">
-            <input class="form-control me-2 border-success"  type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success" type="submit">Search</button>
-          </form>
       </div>
 
       <div class="container p-2 mt-3 d-flex flex-wrap justify-content-evenly mb-5" style="width: 80%;">
-        @forelse ($tickets as $item)
+        @forelse ($konser as $item)
         <div class="card p-2 mt-4 shadow-lg border-success"  style="width: 19rem">
-            <img class="rounded" src="{{asset('images/1.png')}}" alt="">
-            <h5 class="mt-1 mx-1 text-dark">{{ $item['name'] }}</h5>
+          <div class="d-flex justify-content-center">
+            <img class="rounded " src="{{asset($item->poster)}}" alt="" style=" height:200px;">
+          </div>  
+            <h5 class="mt-1 mx-1 text-dark">{{ $item->nama}}</h5>
                 <div class="container mt-3 d-flex align-items-start">
                     <img style="width: 24px" src="{{ asset('images/calendar_1.png') }}" alt="">
-                    <p class="card-text mx-2 text-secondary" style="font-size:16px">{{ $item['date'] }}</p>
+                    <p class="card-text mx-2 text-secondary" style="font-size:16px"><td>{{ \Carbon\Carbon::parse($item['tanggal'])->format('d F Y') }}</td></p>
                 </div>
                 <div class="container mt-3 d-flex align-items-start">
                     <img style="width: 24px" src="{{ asset('images/time_1.png') }}" alt="">
-                    <p class="card-text mx-2 text-secondary" style="font-size:16px">{{ $item['jam'] }} WIB</p>
+                    <p class="card-text mx-2 text-secondary" style="font-size:16px">{{ $item->jam }} WIB</p>
                 </div>
                 <div class="container mt-3 d-flex align-items-start">
                     <img style="width: 24px" src="{{ asset('images/location_1.png') }}" alt="">
-                    <p class="card-text mx-2 text-secondary" style="font-size:16px">{{ $item['lokasi'] }}</p>
+                    <p class="card-text mx-2 text-secondary" style="font-size:16px">{{ $item->lokasi }}</p>
                 </div>
             <hr class="mb-0">
             <div class="d-flex justify-content-between p-2">
                 <div>
                     <p class="m-0 text-secondary">Harga :</p>
-                    <h4 class="m-0"><strong>{{ $item['harga'] }}</strong></h4>
+                    <h4 class="m-0"><strong>{{ $item->harga }}</strong></h4>
                 </div>
                 <div class="d-flex align-items-center">
-                    <button class="btn btn-success" style="font-size:20px" onclick="window.location='{{ url('pembelian') }}'">BELI</button>
+                  
+                    @if ($item->jumlah == '0')
+                      <button class="btn btn-secondary" disabled style="font-size:20px ">
+                        <a href="{{ route('pembeliantiket', ['id' => $item['id']]) }}" class="btn btn-secondary "  style="font-size:20px">BELI</a>
+                      </button> 
+                    @else
+                      <button class="btn btn-success" style="font-size:20px ">
+                        <a href="{{ route('pembeliantiket', ['id' => $item['id']]) }}" class="btn btn-success " style="font-size:20px">BELI</a>
+                      </button> 
+                    @endif
+                                 
                 </div>
             </div>
         </div>
         @empty
-          
+        <div class="alert alert-danger">
+          Belum ada Event yang disarankan
+      </div>
         @endforelse  
     </div>
-      
+    {{ $konser->links() }}
+
+
     <footer class="bg-success text-white text-center text-lg-start">
         <div class="container p-4">
           <div class="row">
@@ -166,5 +192,6 @@
     integrity= "sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin= "anonymous">
     </script>
+
 </body>
 </html>

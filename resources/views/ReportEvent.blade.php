@@ -23,84 +23,88 @@
             <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-3 "> 
                     <li class="nav-item">
-                        <a href="{{ url('admindashboard') }}" class="nav-link">Dashboard</a>
+                        <a href="{{ url('adminDashboard') }}" class="nav-link ">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('event') }}" class="nav-link " aria-current="page">Add Event</a>
+                        <a href="{{ url('addEvent') }}" class="nav-link  " aria-current="page">add Event</a>
                     </li>
                     <li class="nav-item">
                             <a href="{{ url('addMerchandise') }}" class="nav-link " aria-current="page">Add Merchandise</a>
                         </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportpelanggan') }}" class="nav-link ">Report User</a>
+                        <a href="{{ url('ReportUser') }}" class="nav-link  ">Report User</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportevent') }}" class="nav-link active ">Report Event</a>
+                        <a href="{{ url('ReportEvent') }}" class="nav-link active">Report Event</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportmerchandise') }}" class="nav-link ">Report Merchandise</a>
+                        <a href="{{ url('ReportMerchandise') }}" class="nav-link ">Report Merchandise</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="{{ url('homepage') }}" class="nav-link">Logout</a>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="{{ route('actionLogout') }}"><i class=""></i> Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
-    </nav>
-    <div class="mb-4">
+    </nav>    <div class="mb-4">
         
     </div>
     <div class="container mt-4">
         <div class="card">
-            <div class="card-body">
                 <h1>EVENT REPORT</h1>
-                <div class="form-group d-flex align-items-center justify-content-end mb-3">
-                    <input type="search" class="form-control" style="width:25%;" placeholder="Search..." aria-label="Search">
-                    <button type="search" class="btn btn-primary btn-sm">Search</button>
-                </div>
+                
                 <div class="container mt-3">
                     <table class="table">
                         <thead class="table-light">
                             <tr class="">
                                 <th>No</th>
-                                <th>Gambar</th>
+                                <th>Poster</th>
                                 <th>Penyelenggara</th>
                                 <th>Nama Tiket</th>
                                 <th>Harga Tiket</th>
                                 <th>Tanggal</th>
                                 <th>Waktu</th>
+                                <th>Lokasi</th>
+                                <th>Deskripsi</th>
+                                <th>Stok</th>
                                 <th class="text-center">Control</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($reportEvent as $item)
+                            @forelse ($konsers as $item)
                             <tr>
-                                <td>{{ $item['no'] }} </td>
-                                <td><img class="gambarEvent" src="{{ $item['gambar']
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td><img class="gambarEvent" src="{{ $item['poster']
                                 }}" alt="" style="width: 200px"></td>
                                 <td>{{ $item['penyelenggara']}}</td>
                                 <td>{{ $item['nama'] }}</td>
                                 <td>{{ $item['harga'] }}</td>
-                                <td>{{ $item['tanggal'] }}</td>
-                                <td>{{ $item['waktu'] }} </td>
+                                <td>{{ \Carbon\Carbon::parse($item['tanggal'])->format('d F Y') }}</td>
+                                <td>{{ $item['jam'] }} WIB</td>
+                                <td>{{ $item['lokasi'] }} </td>
+                                <td>{{ $item['deskripsi'] }} </td>
+                                <td>{{ $item['jumlah'] }} </td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="{{ url('editEvent') }}" class="btn btn-outline-warning" onclick="return confirm('Are you sure you want to update?')">Update</a>
-                                        <button type="button" class="btn btn-danger mx-2" onclick="return confirm('Are you sure you want to delete user?')">Delete</button>
+                                        <a href="{{ url('editEvent/'.$item->id) }}" class="btn btn-outline-warning" onclick="return confirm('Are you sure you want to update?')">Update</a>
+                                        <form id="delete-form-{{ $item->id }}" action="{{ route('konser.destroy', $item->id) }}" class="d-inline" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
                             @empty
                             <div class="alert alert-danger">
-                                Data Kelas masih kosong
+                                Data Konser masih kosong
                             </div>
                             @endforelse
                         </tbody>
                       </table>
                 </div>
-            </div>
         </div>
     </div>
 

@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>Add Merchandise</title>
-   
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet"/>
@@ -23,27 +23,27 @@
             <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-3 "> 
                     <li class="nav-item">
-                        <a href="{{ url('admindashboard') }}" class="nav-link">Dashboard</a>
+                        <a href="{{ url('adminDashboard') }}" class="nav-link">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('event') }}" class="nav-link " aria-current="page">Add Event</a>
+                        <a href="{{ url('addEvent') }}" class="nav-link  " aria-current="page">add Event</a>
                     </li>
                     <li class="nav-item">
-                            <a href="{{ url('addMerchandise') }}" class="nav-link active " aria-current="page">Add Merchandise</a>
+                            <a href="{{ url('addMerchandise') }}" class="nav-link  active" aria-current="page">Add Merchandise</a>
                         </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportpelanggan') }}" class="nav-link  ">Report User</a>
+                        <a href="{{ url('ReportUser') }}" class="nav-link  ">Report User</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportevent') }}" class="nav-link ">Report Event</a>
+                        <a href="{{ url('ReportEvent') }}" class="nav-link ">Report Event</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportmerchandise') }}" class="nav-link ">Report Merchandise</a>
+                        <a href="{{ url('ReportMerchandise') }}" class="nav-link ">Report Merchandise</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="{{ url('homepage') }}" class="nav-link">Logout</a>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="{{ route('actionLogout') }}"><i class=""></i> Logout</a>
                     </li>
                 </ul>
             </div>
@@ -56,43 +56,45 @@
             <div class="card-body">
                 <h2 style="font-weight: bold; text-align: center;">Merchandise Registration</h2>
                 <hr style="border: solid">
-                <form>
+                <form action="{{ route('merchandises.store', []) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
                     <div class="mb-3">
                         <label for="NamaMerchandise" class="form-label">Nama Merchandise</label>
-                        <input type="text" class="form-control" id="NamaMerchandise" placeholder="Masukkan Nama Merchandise" required="">
+                        <input type="text" class="form-control" id="NamaMerchandise" placeholder="Masukkan Nama Merchandise" required name="nama">
                         <div class="invalid-feedback">
                             Tolong harap diisi!
                         </div>
                     </div>
                     <div class="input">
                         <label for="JenisMerch" class="form-label">Jenis Merchandise</label>
-                        <input type="text" class="form-control" id="JenisMerch" placeholder="Masukkan Jenis Merchandise" required="">
+                        <input type="text" class="form-control" id="JenisMerch" placeholder="Masukkan Jenis Merchandise" required name="jenis">
                         <div class="invalid-feedback">
                             Isi Nama Event yang Anda Ikuti!
                         </div>
                     </div>
                     <div class="input">
                         <label for="StokMerch" class="form-label">Stok Merchandise</label>
-                        <input type="number" class="form-control" id="StokMerch" placeholder="Masukkan Stok Merchendise" required="">
+                        <input type="number" class="form-control" id="StokMerch" placeholder="Masukkan Stok Merchendise" required name="stok">
                         <div class="invalid-feedback">
                             Masukkan Harga Tiket Event Anda!
                         </div>
                     </div>
                     <div class="input">
                         <label for="HargaMerch" class="form-label">Harga Merchandise</label>
-                        <input type="number" class="form-control" id="HargaMerch" placeholder="Masukkan Harga Merchendise" required="">
+                        <input type="number" class="form-control" id="HargaMerch" placeholder="Masukkan Harga Merchendise" required name="harga">
                         <div class="invalid-feedback">
                             Masukkan Harga Tiket Event Anda!
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="GambarMerch" class="form-label">Input Gambar Merchandise</label>
-                        <input class="form-control" type="file" id="GambarMerch" required="">
+                        <input name="gambar" class="form-control" type="file" id="GambarMerch" required>
                     </div>
 
                     <div class="d-flex justify-content-center">
                         <div class="d-grid">
-                            <button class="btn btn-outline-danger" type="submit">Reset</button>
+                            <button class="btn btn-outline-danger" type="reset">Reset</button>
                         </div>
                         <div class="d-grid ms-3">
                             <button class="btn btn-primary" type="submit">Submit</button>

@@ -12,7 +12,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+    {{-- <nav class="navbar navbar-expand-lg navbar-light bg-success">
         <div class="container">
             <a class="navbar-brand" href="#"><img style="width: 4rem" src="{{ asset('images/GE.png') }}" alt=""></a>
             <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,9 +40,10 @@
                 
             </div>
         </div>
-    </nav>
+    </nav> --}}
 
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
+      
         <div class="row border rounded-5 p-3 bg-white shadow" style="width: 930px">
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box bg-success">
                 <div class="featured-image mb-3">
@@ -54,26 +55,28 @@
                     <div class="header-text mb-4">
                         <h1 class="text-center">Log In</h1>
                     </div>
-                    <form>
+                    @if (session('error'))
+                    <div class="alert alert-danger">
+                        <b>Oops!</b> {{ session('error') }}
+                    </div>
+                    @endif
+                    
+                    <form method="post" action="{{ route('actionLogin') }}">
+                        @csrf
+                        
                         <div class="form-group mb-3">
                             <label for="email"><strong>Email</strong></label>
-                            <input type="email" id="email" class="form-control form-control-lg bg-light fs-6" placeholder="masukan email anda" required style="border-color: #5cb85c;">
+                            <input type="email" name="email"  class="form-control form-control-lg bg-light fs-6" placeholder="masukan email anda" required style="border-color: #5cb85c;">
                         </div>
                         <div class="form-group mb-3">
                             <label for="password"><strong>Password</strong></label>
-                            <input type="password" id="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password" required style="border-color: #5cb85c;">
+                            <input type="password" name="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password" required style="border-color: #5cb85c;">
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="formCheck">
-                                <label for="formCheck" class="form-check-label text-secondary"><small>Remember Me</small></label>
-                            </div>
-                        </div>
-                        <div class="input-group mb-3">
-                            <button class="btn btn-lg btn-success w-100 fs-6" onclick="window.location='{{ url('admindashboard') }}'">Login</button>
+                        <div class="form-group mb-3 mt-3">
+                            <button class="btn btn-lg btn-success w-100 fs-6" type="submit">Login</button>
                         </div>
                         <div class="row">
-                            <small class="text-center">Don't have Account ? <a href="{{ url('register') }}">Register</a></small>
+                            <small class="text-center">Don't have Account ? <a href="{{ route('register') }}">Register</a></small>
                         </div>
                     </form>
                 </div>

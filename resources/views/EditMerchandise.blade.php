@@ -20,74 +20,79 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-3 "> 
                     <li class="nav-item">
-                        <a href="{{ url('admindashboard') }}" class="nav-link">Dashboard</a>
+                        <a href="{{ url('adminDashboard') }}" class="nav-link active">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('event') }}" class="nav-link " aria-current="page">Add Event</a>
+                        <a href="{{ url('addEvent') }}" class="nav-link  " aria-current="page">add Event</a>
                     </li>
                     <li class="nav-item">
                             <a href="{{ url('addMerchandise') }}" class="nav-link " aria-current="page">Add Merchandise</a>
                         </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportpelanggan') }}" class="nav-link  ">Report User</a>
+                        <a href="{{ url('ReportUser') }}" class="nav-link  ">Report User</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportevent') }}" class="nav-link ">Report Event</a>
+                        <a href="{{ url('ReportEvent') }}" class="nav-link ">Report Event</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportmerchandise') }}" class="nav-link ">Report Merchandise</a>
+                        <a href="{{ url('ReportMerchandise') }}" class="nav-link ">Report Merchandise</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="{{ url('homepage') }}" class="nav-link">Logout</a>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="{{ route('actionLogout') }}"><i class=""></i> Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-
     <div class="container mt-4">
         <div class="card">
             <div class="card-body">
                 <h2 style="font-weight: bold; text-align: center;">Edit Merchandise</h2>
                 <hr style="border: solid">
-                <form>
+                <form action="{{ route('merchandises.update', $merchandise->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
                     <div class="mb-3">
                         <label for="NamaMerchandise" class="form-label">Nama Merchandise</label>
-                        <input type="text" class="form-control" id="NamaMerchandise" placeholder="Masukkan Nama Merchandise" required="">
+                        <input type="text" class="form-control" id="NamaMerchandise" placeholder="Masukkan Nama Merchandise" required name="nama" value="{{ old('nama', $merchandise->nama) }}">
                         <div class="invalid-feedback">
                             Tolong harap diisi!
                         </div>
                     </div>
                     <div class="input">
                         <label for="JenisMerch" class="form-label">Jenis Merchandise</label>
-                        <input type="text" class="form-control" id="JenisMerch" placeholder="Masukkan Jenis Merchandise" required="">
+                        <input type="text" class="form-control" id="JenisMerch" placeholder="Masukkan Jenis Merchandise" required name="jenis" value="{{ old('jenis', $merchandise->jenis) }}">
                         <div class="invalid-feedback">
                             Isi Nama Event yang Anda Ikuti!
                         </div>
                     </div>
                     <div class="input">
                         <label for="StokMerch" class="form-label">Stok Merchandise</label>
-                        <input type="number" class="form-control" id="StokMerch" placeholder="Masukkan Stok Merchendise" required="">
+                        <input type="number" class="form-control" id="StokMerch" placeholder="Masukkan Stok Merchendise" required name="stok" value="{{ old('stok', $merchandise->stok) }}">
                         <div class="invalid-feedback">
                             Masukkan Harga Tiket Event Anda!
                         </div>
                     </div>
                     <div class="input">
                         <label for="HargaMerch" class="form-label">Harga Merchandise</label>
-                        <input type="number" class="form-control" id="HargaMerch" placeholder="Masukkan Harga Merchendise" required="">
+                        <input type="number" class="form-control" id="HargaMerch" placeholder="Masukkan Harga Merchendise" required name="harga" value="{{ old('harga', $merchandise->harga) }}">
                         <div class="invalid-feedback">
                             Masukkan Harga Tiket Event Anda!
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="form-group mb-3">
                         <label for="GambarMerch" class="form-label">Input Gambar Merchandise</label>
-                        <input class="form-control" type="file" id="GambarMerch" required="">
+                        <input class="form-control" type="file" id="GambarMerch" name="gambar" value="{{ old('gambar', $merchandise->gambar) }}">
+                        <p class="small-text text-danger">
+                            jangan upload gambar jika tidak ingin mengubah gambar
+                        </p>
                     </div>
 
                     <div class="d-flex justify-content-center">

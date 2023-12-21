@@ -23,78 +23,76 @@
             <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-3 "> 
                     <li class="nav-item">
-                        <a href="{{ url('admindashboard') }}" class="nav-link">Dashboard</a>
+                        <a href="{{ url('adminDashboard') }}" class="nav-link ">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('event') }}" class="nav-link " aria-current="page">Add Event</a>
+                        <a href="{{ url('addEvent') }}" class="nav-link  " aria-current="page">add Event</a>
                     </li>
                     <li class="nav-item">
                             <a href="{{ url('addMerchandise') }}" class="nav-link " aria-current="page">Add Merchandise</a>
                         </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportpelanggan') }}" class="nav-link active ">Report User</a>
+                        <a href="{{ url('ReportUser') }}" class="nav-link  active">Report User</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportevent') }}" class="nav-link ">Report Event</a>
+                        <a href="{{ url('ReportEvent') }}" class="nav-link ">Report Event</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('reportmerchandise') }}" class="nav-link ">Report Merchandise</a>
+                        <a href="{{ url('ReportMerchandise') }}" class="nav-link ">Report Merchandise</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="{{ url('homepage') }}" class="nav-link">Logout</a>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="{{ route('actionLogout') }}"><i class=""></i> Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    
     <div class="mb-4">
         
     </div>
     <div class="container mt-4">
         <div class="card">
-            <div class="card-body">
-                <h1>USER REPORT</h1>
-                <div class="form-group d-flex align-items-center justify-content-end mb-3">
-                    <input type="search" class="form-control" style="width:25%;" placeholder="Search..." aria-label="Search">
-                    <button type="search" class="btn btn-primary btn-sm">Search</button>
-                </div>
-                <div class="container mt-3">
+            <div class="card-body ">
+                <h1>MERCHANDISE REPORT</h1>
+                
+                <div class="container mt-3 ">
                     <table class="table">
                         <thead class="table-light">
                             <tr class="">
                                 <th>No</th>
-                                <th>Nama Pemesan</th>
-                                <th>Identitas</th>
-                                <th>Nomor Identitas</th>
+                                <th>Image</th>
+                                <th>Username</th>
+                                <th>Nomor Telepon</th>
                                 <th>Email</th>
-                                <th>No Whatsapp</th>
-                                <th>Keterangan</th>
                                 <th class="text-center">Control</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($report as $item)
+                            @forelse ($users as $item)
                             <tr>
-                                <td>{{ $item['no'] }} </td>
-                                <td>{{ $item['nama'] }}</td>
-                                <td>{{ $item['identitas']}}</td>
-                                <td>{{ $item['no_identitas'] }}</td>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td><img class="gambarEvent" src="{{asset( $item->image)}}" alt="" style="width: 200px"></td>
+                                <td>{{ $item['username'] }}</td>
+                                <td>{{ $item['noTelp'] }}</td>
                                 <td>{{ $item['email'] }}</td>
-                                <td>{{ $item['no_wa'] }}</td>
-                                <td>{{ $item['ket'] }} </td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="{{ url('editPelanggan') }}" class="btn btn-outline-warning" onclick="return confirm('Are you sure you want to update?')">Update</a>
-                                        <button type="button" class="btn btn-danger mx-2" onclick="return confirm('Are you sure you want to delete user?')">Delete</button>
+                                        <form id="delete-form-{{ $item->id_user }}" action="{{ route('registers.destroy', $item->id_user) }}" class="d-inline" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
+                                        
                                     </div>
                                 </td>
                             </tr>
                             @empty
-                            <div class="alert alert-danger">
-                                Data Kelas masih kosong
-                            </div>
+                                <div class="alert alert-danger">
+                                    BELUM ADA DATA MERCHANDISE
+                                </div>
                             @endforelse
                         </tbody>
                       </table>

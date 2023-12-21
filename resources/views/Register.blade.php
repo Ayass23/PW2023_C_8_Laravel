@@ -12,7 +12,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+    {{-- <nav class="navbar navbar-expand-lg navbar-light bg-success">
         <div class="container">
             <a class="navbar-brand" href="#"><img style="width: 4rem" src="{{ asset('images/GE.png') }}" alt=""></a>
             <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
                 
             </div>
         </div>
-    </nav>
+    </nav> --}}
 
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="row border rounded-5 p-3 bg-white shadow" style="width: 930px">
@@ -54,28 +54,35 @@
                     <div class="header-text mb-4">
                         <h1 class="text-center">Register</h1>
                     </div>
-                    <form>
+                    @if(session('message'))
+                    <div class="alert alert-success">
+                        {{session('message')}}
+                    </div>
+                    @endif
+
+                    <form method="post" action="{{route('actionRegister')}}">
+                        @csrf
                         <div class="form-group mb-3">
-                            <label for="nama"><strong>Nama Lengkap</strong></label>
-                            <input type="text" id="nama" class="form-control form-control-lg bg-light fs-6 mt-2 " placeholder="masukan nama lengkap" required style="border-color: #5cb85c;">
+                            <label for="username"><strong>Username </strong></label>
+                            <input type="text" name="username" id="username" class="form-control form-control-lg bg-light fs-6" placeholder="masukan Username" required style="border-color: #5cb85c;">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="nomor"><strong>Nomor Telepon</strong></label>
-                            <input type="text" id="nomor" class="form-control form-control-lg bg-light fs-6" placeholder="masukan password" required style="border-color: #5cb85c;">
+                            <label for="noTelp"><strong>Nomor Telepon</strong></label>
+                            <input type="number" name="noTelp" id="noTelp" class="form-control form-control-lg bg-light fs-6" placeholder="masukan no telepon" required style="border-color: #5cb85c;">
                         </div>
                         <div class="form-group mb-3">
                             <label for="email"><strong>Email</strong></label>
-                            <input type="email" id="email" class="form-control form-control-lg bg-light fs-6" placeholder="masukan email anda" required style="border-color: #5cb85c;">
+                            <input type="email" name="email" id="email" class="form-control form-control-lg bg-light fs-6" placeholder="masukan email anda" required style="border-color: #5cb85c;">
                         </div>
                         <div class="form-group mb-3">
                             <label for="password"><strong>Password</strong></label>
-                            <input type="password" id="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password" required style="border-color: #5cb85c;">
+                            <input type="password" name="password" id="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password" required style="border-color: #5cb85c;">
                         </div>
                         <div>
-                            <button class="btn btn-lg btn-success w-100 fs-6 mt-3 mb-3" onclick="window.location='{{ url('login') }}'">Register</button>
+                            <button class="btn btn-lg btn-success w-100 fs-6 mt-3 mb-3" type="submit">Register</button>
                         </div>
                         <div class="row">
-                            <small class="text-center">Already have Account ? <a href="{{ url('login') }}">Login</a></small>
+                            <small class="text-center">Already have Account ? <a href="{{ route('login') }}">Login</a></small>
                         </div>
                     </form>
                 </div>
